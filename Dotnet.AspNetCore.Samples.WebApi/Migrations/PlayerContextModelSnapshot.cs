@@ -17,7 +17,7 @@ namespace Dotnet.AspNetCore.Samples.WebApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
 
-            modelBuilder.Entity("Dotnet.AspNetCore.Players.WebApi.Models.Player", b =>
+            modelBuilder.Entity("Dotnet.AspNetCore.Samples.WebApi.Models.Player", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
