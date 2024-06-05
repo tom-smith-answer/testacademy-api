@@ -19,8 +19,18 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="Program.cs" />
+	</ItemGroup>
+
   <ItemGroup>
     <Folder Include="Controllers/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\players-sqlite3.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

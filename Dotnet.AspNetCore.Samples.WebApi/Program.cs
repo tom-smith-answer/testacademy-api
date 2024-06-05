@@ -3,54 +3,59 @@ using Dotnet.AspNetCore.Samples.WebApi.Models;
 using Dotnet.AspNetCore.Samples.WebApi.Services;
 using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder(args);
 
-/*
------------------------------------------------------------------------------------------------
-Services
------------------------------------------------------------------------------------------------
-*/
 
-builder.Services.AddControllers();
+    var builder = WebApplication.CreateBuilder(args);
 
-// var localApplicationData = Environment.SpecialFolder.LocalApplicationData;
-// var folderPath = Environment.GetFolderPath(localApplicationData);
-var projectDataFolder = "Data";
-var path = Path.Join(projectDataFolder, "players-sqlite3.db");
+    /*
+    -----------------------------------------------------------------------------------------------
+    Services
+    -----------------------------------------------------------------------------------------------
+    */
 
-builder.Services.AddDbContext<PlayerContext>(options =>
-    options.UseSqlite($"Data Source={path}")
-    );
+    builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IPlayerService, PlayerService>();
-builder.Services.AddMemoryCache();
+    // var localApplicationData = Environment.SpecialFolder.LocalApplicationData;
+    // var folderPath = Environment.GetFolderPath(localApplicationData);
+    var projectDataFolder = "Data";
+    var path = Path.Join(projectDataFolder, "players-sqlite3.db");
 
-var app = builder.Build();
+    builder.Services.AddDbContext<PlayerContext>(options =>
+        options.UseSqlite($"Data Source={path}")
+        );
 
-/*
------------------------------------------------------------------------------------------------
-Middlewares
-https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware
------------------------------------------------------------------------------------------------
-*/
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+    builder.Services.AddScoped<IPlayerService, PlayerService>();
+    builder.Services.AddMemoryCache();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    var app = builder.Build();
 
-app.UseHttpsRedirection();
-// https://learn.microsoft.com/en-us/aspnet/core/security/cors
-app.UseCors();
-app.UseAuthorization();
-app.MapControllers();
+    /*
+    -----------------------------------------------------------------------------------------------
+    Middlewares
+    https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware
+    -----------------------------------------------------------------------------------------------
+    */
 
-// Data seeding
-// https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding
-PlayerContextInitializer.Seed(app);
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-app.Run();
+    app.UseHttpsRedirection();
+    // https://learn.microsoft.com/en-us/aspnet/core/security/cors
+    app.UseCors();
+    app.UseAuthorization();
+    app.MapControllers();
+
+    // Data seeding
+    // https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding
+    PlayerContextInitializer.Seed(app);
+
+    app.Run();
+    public partial class Program { };
+
+
