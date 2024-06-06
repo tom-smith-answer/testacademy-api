@@ -11,6 +11,7 @@ namespace TestProject1
     using System.Runtime.CompilerServices;
     using ApiTesting.Classes;
     using Newtonsoft.Json.Linq;
+    using Snapshooter.NUnit;
 
     public class IntegrationTestsWebApplicationFactory: IDisposable
     {
@@ -55,25 +56,14 @@ namespace TestProject1
         [Test]
         public void JsonStringResponseBodyCanBeVerifiedForGetRequests()
         {
-            //JObject jPlayer = (JObject)Given(httpClient)
-            //.When()
-            //.Get(baseUrl + "Players")
-            //.Then().StatusCode(200).Extract().Body("$.[0]");
+            JObject testPlayer = (JObject)Given(httpClient)
+            .When()
+            .Get(baseUrl + "Players/1")
+            .Then()
+            .StatusCode(200)
+            .DeserializeTo(typeof(JObject));
 
-
-            //Player player = jPlayer.ToObject<Player>();
-    
-
-            //Assert.That(player.FirstName, NUnit.Framework.Is.EqualTo("Damián"));
-            //Assert.That(player.MiddleName, NUnit.Framework.Is.EqualTo("Emiliano"));
-            //Assert.That(player.LastName, NUnit.Framework.Is.EqualTo("Martínez"));
-            //Assert.That((DateTime)player.DateOfBirth, NUnit.Framework.Is.EqualTo("1992-09-02T01:00:00+01:00"));
-            //Assert.That(player.SquadNumber, NUnit.Framework.Is.EqualTo(23));
-            //Assert.That(player.Position, NUnit.Framework.Is.EqualTo("Goalkeeper"));
-            //Assert.That(player.AbbrPosition, NUnit.Framework.Is.EqualTo("GK"));
-            //Assert.That(player.Team, NUnit.Framework.Is.EqualTo("Aston Villa FC"));
-            //Assert.That(player.League, NUnit.Framework.Is.EqualTo("Premier League"));
-            //Assert.That(player.Starting11, NUnit.Framework.Is.EqualTo(true));
+            Snapshot.Match(testPlayer);
         }
 
         [Test]
