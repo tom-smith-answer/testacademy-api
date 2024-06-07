@@ -1,5 +1,6 @@
-namespace TestProject1
+namespace ApiTesting.Tests
 {
+    using System;
     using static RestAssured.Dsl;
     using FluentAssertions;
     using Microsoft.AspNetCore.Builder;
@@ -12,23 +13,11 @@ namespace TestProject1
     using ApiTesting.Classes;
     using Newtonsoft.Json.Linq;
     using Snapshooter.NUnit;
+    using RestAssured.Response;
+    using ApiTesting.Classes.PostData;
 
-    public class IntegrationTestsWebApplicationFactory: IDisposable
+    public class IntegrationTests : BasicTests
     {
-        public void Dispose() { }
-
-        private readonly WebApplicationFactory<Program> webApplicationFactory;
-
-        private readonly HttpClient httpClient;
-
-        private readonly string baseUrl;
-
-        public IntegrationTestsWebApplicationFactory()
-        {
-            webApplicationFactory = new WebApplicationFactory<Program>();
-            httpClient = webApplicationFactory.CreateClient();
-            baseUrl = "https://localhost:7135/api/";
-        }
 
         [TestCase("Players")]
         [TestCase("Players/1")]
@@ -67,14 +56,14 @@ namespace TestProject1
         }
 
         [Test]
-        public void responsebodylengthcanbeverified()
+        public void Responsebodylengthcanbeverified()
         {
             List<object> players = (List<object>)Given(httpClient)
-            .When()    
+            .When()
             .Get(baseUrl + "Players")
             .Then().StatusCode(200).Extract().Body("$.[0:]");
 
-            Assert.That(players.Count, NUnit.Framework.Is.EqualTo(11));
+            Assert.That(players.Count, Is.EqualTo(11));
 
         }
 
@@ -88,6 +77,23 @@ namespace TestProject1
             .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromMilliseconds(200)));
         }
 
+        [Test]
+        public void SucessStatusCodeCanBeVerifiedForPostRequest()
+        {
+            DataHelper dataHelper = new DataHelper();
+
+            Player player = dataHelper.GetPlayerData("Post_Harvey");
+
+         object orderResponse = Given(httpClient)
+        .Body(player)
+        .When()
+        .Post(baseUrl + "Players")
+        .Then()
+        .StatusCode(201)
+        .Extract().Body("$");
+
+         Snapshot.Match(orderResponse, matchOptions => matchOptions.IgnoreField("id"));
+        }
     }
 }
 
