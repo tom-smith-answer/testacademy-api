@@ -1,0 +1,14 @@
+﻿{
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "player": [
+      "The player field is required."
+    ],
+    "$.FirstName": [
+      "The JSON value could not be converted to System.String. Path: $.FirstName | LineNumber: 0 | BytePositionInLine: 21."
+    ]
+  },
+  "traceId": "00-4bab5a5d98d44b25d08566afd1219697-1620f125147dae02-00"
+}

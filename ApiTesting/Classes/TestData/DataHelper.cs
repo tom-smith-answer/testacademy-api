@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ApiTesting.Classes;
+using ApiTesting.Classes.POCO;
 
-namespace ApiTesting.Classes.PostData
+namespace ApiTesting.Classes.TestData
 {
     internal class DataHelper
     {

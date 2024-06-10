@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiTesting.Classes
+namespace ApiTesting.Classes.POCO
 {
     public class Player
     {
@@ -18,7 +18,7 @@ namespace ApiTesting.Classes
 
         public string? DateOfBirth { get; set; }
 
-        public int SquadNumber { get; set; }
+        public int? SquadNumber { get; set; }
 
         public string? Position { get; set; }
 
@@ -28,7 +28,7 @@ namespace ApiTesting.Classes
 
         public string? League { get; set; }
 
-        public bool Starting11 { get; set; }
+        public bool? Starting11 { get; set; }
 
     }
 }

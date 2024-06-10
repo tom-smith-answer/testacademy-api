@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ApiTesting.Classes;
 using System.Threading.Tasks;
+using ApiTesting.Classes.POCO;
 
-namespace ApiTesting.Classes.PostData
+namespace ApiTesting.Classes.TestData
 {
     public class PlayerData
     {

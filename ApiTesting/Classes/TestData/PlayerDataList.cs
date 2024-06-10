@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ApiTesting.Classes;
+using ApiTesting.Classes.POCO;
 
-namespace ApiTesting.Classes.PostData
+namespace ApiTesting.Classes.TestData
 {
     public class PlayerDataList
     {
@@ -27,6 +27,28 @@ namespace ApiTesting.Classes.PostData
             AbbrPosition = "EW",
             Team = "Ninja Warriors",
             League = "Answer under 1100s",
+            Starting11 = false,
+        }),
+
+            new PlayerData("Post_Incomplete", new Player
+            {
+                Id=0,
+                FirstName="Duncan",
+                LastName="Denio",
+                Starting11=true
+            }),
+            new PlayerData("Post_Invalid", new Player
+        {
+            Id = 0,
+            FirstName = "",
+            MiddleName = "",
+            LastName = "*****",
+            DateOfBirth = "1066-06-06T14:30:23.234Z",
+            SquadNumber = 00,
+            Position = "<><><>",
+            AbbrPosition = "<>",
+            Team = "######",
+            League = "@@@@@@@",
             Starting11 = false,
         })
         };

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace ApiTesting.Classes
+namespace ApiTesting.Classes.Utilities
 {
 
 

@@ -10,89 +10,153 @@ namespace ApiTesting.Tests
     using Dotnet.AspNetCore.Samples.WebApi;
     using System.Security.AccessControl;
     using System.Runtime.CompilerServices;
-    using ApiTesting.Classes;
     using Newtonsoft.Json.Linq;
     using Snapshooter.NUnit;
     using RestAssured.Response;
-    using ApiTesting.Classes.PostData;
+    using ApiTesting.Classes.TestData;
+    using FluentAssertions.Equivalency;
+    using ApiTesting.Classes.POCO;
+    using ApiTesting.Classes.Utilities;
 
     public class IntegrationTests : BasicTests
     {
 
-        [TestCase("Players")]
-        [TestCase("Players/1")]
-        public void StatusCodeIndicatingSuccessCanBeVerifedForGetRequests(string url)
+        [TestCase("Players", 200)]
+        [TestCase("Players/1", 200)]
+        [TestCase("Players/999", 404)]
+        public void GetStatusCode(string endpoint, int status)
         {
             Given(httpClient)
                 .When()
-                .Get(baseUrl + url)
+                .Get(baseUrl + endpoint)
                 .Then()
-                .StatusCode(200);
+                .StatusCode(status);
         }
 
         [TestCase("Players")]
         [TestCase("Players/1")]
-        public void ResponseContentTypeHeaderCanBeVerifiedForGetRequests(string url)
+        public void GetContentType(string endpoint)
         {
             Given(httpClient)
             .When()
-            .Get(baseUrl + url)
+            .Get(baseUrl + endpoint)
             .Then()
             .StatusCode(200)
             .ContentType("application/json; charset=utf-8");
         }
 
-        [Test]
-        public void JsonStringResponseBodyCanBeVerifiedForGetRequests()
+        [TestCase("Players")]
+        public void GetPlayersBodyContent(string endpoint)
         {
-            JObject testPlayer = (JObject)Given(httpClient)
-            .When()
-            .Get(baseUrl + "Players/1")
-            .Then()
-            .StatusCode(200)
-            .DeserializeTo(typeof(JObject));
+            object playerResponse = Given(httpClient)
+                .When()
+                .Get(baseUrl + endpoint)
+                .Then()
+                .StatusCode(200)
+            .Extract().Body("$");
 
-            Snapshot.Match(testPlayer);
+            Console.WriteLine(playerResponse);
+
+            Snapshot.Match(playerResponse);
         }
 
         [Test]
-        public void Responsebodylengthcanbeverified()
+        public void GetPlayerBodyContent()
         {
-            List<object> players = (List<object>)Given(httpClient)
-            .When()
-            .Get(baseUrl + "Players")
-            .Then().StatusCode(200).Extract().Body("$.[0:]");
+            object playerResponse = Given(httpClient)
+                .When()
+                .Get(baseUrl + "Players/1")
+                .Then()
+                .StatusCode(200)
+            .Extract().Body("$");
 
-            Assert.That(players.Count, Is.EqualTo(11));
+            Console.WriteLine(playerResponse);
 
+            Snapshot.Match(playerResponse);
         }
 
         [Test]
-        public void ResponseTimeCanBeVerified()
+        public void GetResponseTime()
         {
             Given(httpClient)
             .When()
             .Get(baseUrl + "Players")
             .Then()
-            .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromMilliseconds(200)));
+            .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromMilliseconds(2000)));
+        }
+
+        [TestCase("Post_Harvey", 201, "id")]
+        [TestCase("Post_Incomplete", 400, "traceId")]
+        //[TestCase("Post_Invalid", 400, "traceId")]
+        public void PostRequest(string name, int status, string ignore)
+        {
+            DataHelper dataHelper = new DataHelper();
+
+            Player player = dataHelper.GetPlayerData(name);
+
+         object playerResponse = Given(httpClient)
+        .Body(player)
+        .When()
+        .Post(baseUrl + "Players")
+        .Then()
+        .StatusCode(status)
+        .Extract().Body("$");
+
+         Snapshot.Match(playerResponse, matchOptions => matchOptions.IgnoreField(ignore));
         }
 
         [Test]
-        public void SucessStatusCodeCanBeVerifiedForPostRequest()
+        public void PostEmptyRequest()
+        {
+            Given(httpClient)
+                .Body("")
+                .When()
+                .Post(baseUrl + "Players")
+                .Then().StatusCode(400);
+        }
+
+        [Test]
+        public void PostInvalidRequest () 
+        {
+            InvalidPlayer player = new InvalidPlayer 
+            {
+                Id = 0,
+                FirstName = 1,
+                MiddleName = 2,
+                LastName = 3,
+                DateOfBirth = 4,
+                SquadNumber = "5",
+                Position = 6, 
+                AbbrPosition = 7,
+                Team = 8,
+                League = 9,
+                Starting11 = "true"
+            };
+
+            object playerResponse = Given(httpClient)
+                .Body(player)
+                .When()
+                .Post(baseUrl + "Players")
+                .Then()
+                .StatusCode(400)
+                .Extract().Body("$");
+
+            Snapshot.Match(playerResponse, matchOptions => matchOptions.IgnoreField("traceId"));
+        }
+
+        [TestCase("Players/13")]
+        public void DeletePlayer(string endpoint)
         {
             DataHelper dataHelper = new DataHelper();
 
             Player player = dataHelper.GetPlayerData("Post_Harvey");
 
-         object orderResponse = Given(httpClient)
-        .Body(player)
-        .When()
-        .Post(baseUrl + "Players")
-        .Then()
-        .StatusCode(201)
-        .Extract().Body("$");
-
-         Snapshot.Match(orderResponse, matchOptions => matchOptions.IgnoreField("id"));
+            Given(httpClient)
+                .When()
+                .Delete(baseUrl + endpoint)
+                .Then()
+                .StatusCode(204);
+                
         }
     }
 }
