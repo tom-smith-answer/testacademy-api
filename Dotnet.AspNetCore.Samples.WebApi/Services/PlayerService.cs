@@ -1,4 +1,5 @@
-﻿using Dotnet.AspNetCore.Samples.WebApi.Models;
+﻿using Dotnet.AspNetCore.Samples.WebApi.Data;
+using Dotnet.AspNetCore.Samples.WebApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -69,12 +70,17 @@ public class PlayerService : IPlayerService
     */
     public async Task UpdateAsync(Player player)
     {
-        _playerContext.Entry(player).State = EntityState.Modified;
+        //_playerContext.Entry(player).State = EntityState.Modified;
 
         try
         {
-            await _playerContext.SaveChangesAsync();
-            _memoryCache.Remove(MemoryCacheKey_Retrieve);
+            if (await _playerContext.Players.FindAsync(player.Id) is Player entity)
+            {
+                entity.MapFrom(player);
+                await _playerContext.SaveChangesAsync();
+                _memoryCache.Remove(MemoryCacheKey_Retrieve);
+            }
+                
         }
         catch (DbUpdateConcurrencyException exception)
         {
