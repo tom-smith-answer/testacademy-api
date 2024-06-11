@@ -29,7 +29,20 @@ namespace ApiTesting.Classes.TestData
             League = "Answer under 1100s",
             Starting11 = false,
         }),
-
+            new PlayerData("Post_Duncan", new Player
+        {
+            Id = 0,
+            FirstName = "Duncan",
+            MiddleName = "The Darkness",
+            LastName = "Denio",
+            DateOfBirth = "2015-06-06T14:30:23.234Z",
+            SquadNumber = 1,
+            Position = "The shadows",
+            AbbrPosition = "SH",
+            Team = "JSON and the Argonauts",
+            League = "Answer under 11s",
+            Starting11 = true,
+        }),
             new PlayerData("Post_Incomplete", new Player
             {
                 Id=0,

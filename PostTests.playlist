@@ -1,0 +1,43 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="ApiTesting" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ApiTesting.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="IntegrationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.PostRequest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="PostRequest(&quot;Post_Incomplete&quot;,400,&quot;traceId&quot;)" />
+                        <Property Name="DisplayName" Value="PostRequest(&quot;Post_Harvey&quot;,201,&quot;id&quot;)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.PostInvalidRequest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="PostInvalidRequest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.PostEmptyRequest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="PostEmptyRequest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

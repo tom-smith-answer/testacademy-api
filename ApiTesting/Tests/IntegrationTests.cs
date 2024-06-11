@@ -24,6 +24,7 @@ namespace ApiTesting.Tests
         [TestCase("Players", 200)]
         [TestCase("Players/1", 200)]
         [TestCase("Players/999", 404)]
+        [TestCase("Players/fail", 400)]
         public void GetStatusCode(string endpoint, int status)
         {
             Given(httpClient)
@@ -70,8 +71,6 @@ namespace ApiTesting.Tests
                 .StatusCode(200)
             .Extract().Body("$");
 
-            Console.WriteLine(playerResponse);
-
             Snapshot.Match(playerResponse);
         }
 
@@ -101,6 +100,8 @@ namespace ApiTesting.Tests
         .Then()
         .StatusCode(status)
         .Extract().Body("$");
+
+         Console.WriteLine(playerResponse);
 
          Snapshot.Match(playerResponse, matchOptions => matchOptions.IgnoreField(ignore));
         }
@@ -144,18 +145,25 @@ namespace ApiTesting.Tests
             Snapshot.Match(playerResponse, matchOptions => matchOptions.IgnoreField("traceId"));
         }
 
-        [TestCase("Players/13")]
-        public void DeletePlayer(string endpoint)
+        [TestCase("Players/13", 204)]
+        [TestCase("Players/14", 404)]
+        public void DeletePlayerCheckStatus(string endpoint, int status)
         {
             DataHelper dataHelper = new DataHelper();
 
-            Player player = dataHelper.GetPlayerData("Post_Harvey");
+            Player player = dataHelper.GetPlayerData("Post_Duncan");
+
+            Given(httpClient)
+                .Body(player)
+                .When()
+                .Post(baseUrl + "Players")
+                .Then();
 
             Given(httpClient)
                 .When()
                 .Delete(baseUrl + endpoint)
                 .Then()
-                .StatusCode(204);
+                .StatusCode(status);
                 
         }
     }

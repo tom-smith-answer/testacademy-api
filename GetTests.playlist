@@ -1,0 +1,58 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="ApiTesting" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ApiTesting.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="IntegrationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.GetContentType" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetContentType(&quot;Players/1&quot;)" />
+                        <Property Name="DisplayName" Value="GetContentType(&quot;Players&quot;)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.GetStatusCode" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetStatusCode(&quot;Players/999&quot;,404)" />
+                        <Property Name="DisplayName" Value="GetStatusCode(&quot;Players&quot;,200)" />
+                        <Property Name="DisplayName" Value="GetStatusCode(&quot;Players/1&quot;,200)" />
+                        <Property Name="DisplayName" Value="GetStatusCode(&quot;Players/fail&quot;,400)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.GetResponseTime" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetResponseTime" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.GetPlayersBodyContent" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetPlayersBodyContent(&quot;Players&quot;)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.GetPlayerBodyContent" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GetPlayerBodyContent" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

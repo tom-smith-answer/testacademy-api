@@ -1,0 +1,31 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="ApiTesting" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ApiTesting.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="IntegrationTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ApiTesting.Tests.IntegrationTests.DeletePlayerCheckStatus" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeletePlayerCheckStatus(&quot;Players/13&quot;,204)" />
+                        <Property Name="DisplayName" Value="DeletePlayerCheckStatus(&quot;Players/14&quot;,404)" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>
