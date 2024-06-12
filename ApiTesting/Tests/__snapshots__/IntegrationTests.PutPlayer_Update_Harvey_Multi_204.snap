@@ -1,0 +1,13 @@
+﻿{
+  "id": 12,
+  "firstName": "Harv",
+  "middleName": "The Power",
+  "lastName": "S",
+  "dateOfBirth": "1066-06-06T14:30:23.234",
+  "squadNumber": 69,
+  "position": "Everywhere",
+  "abbrPosition": "EW",
+  "team": "JSON and the Argonauts",
+  "league": "Answer under 1100s",
+  "starting11": false
+}

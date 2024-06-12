@@ -10,5 +10,6 @@
     "$.SquadNumber": [
       "The JSON value could not be converted to System.Int32. Path: $.SquadNumber | LineNumber: 0 | BytePositionInLine: 103."
     ]
-  }
+  },
+  "traceId": "00-aa27e3c3c3b9dc433933b7a6761d644f-0e2fd24a15b816c9-00"
 }

@@ -20,6 +20,14 @@ namespace ApiTesting.Tests
 
     public class IntegrationTests : BasicTests
     {
+        [TearDown]
+        public void TearDown()
+        {
+            Given(httpClient)
+                .When()
+                .Delete(baseUrl + "Players/13")
+                .Then();
+        }
 
         [TestCase("Players", 200)]
         [TestCase("Players/1", 200)]
@@ -86,7 +94,6 @@ namespace ApiTesting.Tests
 
         [TestCase("Post_Harvey", 201, "id")]
         [TestCase("Post_Incomplete", 400, "traceId")]
-        //[TestCase("Post_Invalid", 400, "traceId")]
         public void PostRequest(string name, int status, string ignore)
         {
             DataHelper dataHelper = new DataHelper();
@@ -165,7 +172,59 @@ namespace ApiTesting.Tests
                 .Delete(baseUrl + endpoint)
                 .Then()
                 .StatusCode(status);
-                
+        }
+
+        [TestCase("Update_Harvey_Invalid", 400)]
+        [TestCase("Update_Harvey_Incomplete", 400)]
+        [TestCase("Update_Harvey", 204)]
+        [TestCase("Update_Harvey_Multi", 204)]
+        public void PutPlayer(string name, int status)
+        {
+            DataHelper dataHelper = new DataHelper();
+            Player player = dataHelper.GetPlayerData(name);
+
+            Given(httpClient)
+                .Body(player)
+                .When()
+                .Put(baseUrl + "Players/12")
+                .Then()
+                .StatusCode(status);
+
+            object playerResponse = Given(httpClient)
+                .When()
+                .Get(baseUrl + "Players/12")
+                .Then()
+                .Extract().Body("$");
+
+
+            Snapshot.Match(playerResponse);
+        }
+
+        [TestCase("Players/13", 400)]
+        [TestCase("Players/fail", 400)]
+
+        public void PutBadEndpoint(string endpoint, int status)
+        {
+            DataHelper dataHelper = new DataHelper();
+            Player player = dataHelper.GetPlayerData("Update_Harvey");
+
+            Given(httpClient)
+                .Body(player)
+                .When()
+                .Put(baseUrl + endpoint)
+                .Then()
+                .StatusCode(status);
+        }
+
+        [Test]
+        public void PutEmpty()
+        {
+            Given(httpClient)
+                .Body("")
+                .When()
+                .Put(baseUrl + "Players/12")
+                .Then()
+                .StatusCode(400);
         }
 
         [Test]

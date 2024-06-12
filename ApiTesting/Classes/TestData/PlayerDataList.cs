@@ -66,6 +66,34 @@ namespace ApiTesting.Classes.TestData
         }),
             new PlayerData("Update_Harvey", new Player
         {
+            Id = 12,
+            FirstName = "Harvey",
+            MiddleName = "The Power",
+            LastName = "Sembhy",
+            DateOfBirth = "1066-06-06T14:30:23.234Z",
+            SquadNumber = 69,
+            Position = "Everywhere",
+            AbbrPosition = "EW",
+            Team = "JSON and the Argonauts",
+            League = "Answer under 1100s",
+            Starting11 = false,
+        }),
+            new PlayerData("Update_Harvey_Multi", new Player
+        {
+            Id = 12,
+            FirstName = "Harv",
+            MiddleName = "The Power",
+            LastName = "S",
+            DateOfBirth = "1066-06-06T14:30:23.234Z",
+            SquadNumber = 69,
+            Position = "Everywhere",
+            AbbrPosition = "EW",
+            Team = "JSON and the Argonauts",
+            League = "Answer under 1100s",
+            Starting11 = false,
+        }),
+            new PlayerData("Update_Harvey_Invalid", new Player
+        {
             Id = 13,
             FirstName = "Harvey",
             MiddleName = "The Power",
@@ -77,6 +105,13 @@ namespace ApiTesting.Classes.TestData
             Team = "JSON and the Argonauts",
             League = "Answer under 1100s",
             Starting11 = false,
+        }),
+            new PlayerData("Update_Harvey_Incomplete", new Player
+        {
+            Id = 12,
+            FirstName = "Harv",
+            MiddleName = "The Power",
+            LastName = "Sembey",
         })
         };
     }
