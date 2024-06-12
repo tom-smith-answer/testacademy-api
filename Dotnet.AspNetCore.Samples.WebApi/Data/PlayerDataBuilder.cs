@@ -8,6 +8,7 @@ public static class PlayerDataBuilder
     public static Player[] SeedWithStarting11()
     {
         var players = new List<Player>();
+        
 
         var json = """
             [{

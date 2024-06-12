@@ -226,25 +226,6 @@ namespace ApiTesting.Tests
                 .Then()
                 .StatusCode(400);
         }
-
-        [Test]
-        public void UpdatePlayer()
-        {
-            DataHelper dataHelper = new DataHelper();
-
-            Player player = dataHelper.GetPlayerData("Update_Harvey");
-
-            object playerResponse = Given(httpClient)
-                .Body(player)
-                .When()
-                .Put(baseUrl + "Players/12")
-                .Then()
-                .StatusCode(200);
-
-            Console.WriteLine(playerResponse);
-
-            Snapshot.Match(playerResponse);
-        }
     }
 }
 

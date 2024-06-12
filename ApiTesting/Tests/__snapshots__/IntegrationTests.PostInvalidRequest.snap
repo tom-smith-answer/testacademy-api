@@ -1,8 +1,7 @@
 ﻿{
-  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
   "title": "One or more validation errors occurred.",
   "status": 400,
-  "traceId": "00-e75edc3add99b58da025a7a973baa8d2-ac2db892918e39f5-00",
   "errors": {
     "player": [
       "The player field is required."
@@ -11,5 +10,5 @@
       "The JSON value could not be converted to System.String. Path: $.FirstName | LineNumber: 0 | BytePositionInLine: 21."
     ]
   },
-  "traceId": "00-81e7778564f8be63e6759f57278eeb9c-74963122430c30cb-00"
+  "traceId": "00-95e79c6014e521e2a66398324c10793d-e6fbb79029606977-00"
 }
