@@ -17,6 +17,7 @@
                       <Rule Match="Any">
                         <Property Name="DisplayName" Value="DeletePlayerCheckStatus(&quot;Players/13&quot;,204)" />
                         <Property Name="DisplayName" Value="DeletePlayerCheckStatus(&quot;Players/14&quot;,404)" />
+                        <Property Name="DisplayName" Value="DeletePlayerCheckStatus(&quot;Players/fail&quot;,400)" />
                       </Rule>
                     </Rule>
                   </Rule>
