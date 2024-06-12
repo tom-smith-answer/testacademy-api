@@ -1,7 +1,8 @@
 ﻿{
-  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
   "title": "One or more validation errors occurred.",
   "status": 400,
+  "traceId": "00-e75edc3add99b58da025a7a973baa8d2-ac2db892918e39f5-00",
   "errors": {
     "player": [
       "The player field is required."
