@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dotnet.AspNetCore.Samples.WebApi", "Dotnet.AspNetCore.Samples.WebApi\Dotnet.AspNetCore.Samples.WebApi.csproj", "{5C9D575F-BA87-45E3-A809-A6A3FA8BACEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTesting", "ApiTesting\ApiTesting.csproj", "{F78E0D64-C6B2-4E7D-ABC4-B7D619BD95E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTesting", "ApiTesting\ApiTesting.csproj", "{F78E0D64-C6B2-4E7D-ABC4-B7D619BD95E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
