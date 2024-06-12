@@ -17,7 +17,10 @@ namespace ApiTesting.Tests
     using FluentAssertions.Equivalency;
     using ApiTesting.Classes.POCO;
     using ApiTesting.Classes.Utilities;
+    using Allure.NUnit;
+    using NUnit.Framework;
 
+    [AllureNUnit]
     public class IntegrationTests : BasicTests
     {
         [TearDown]
