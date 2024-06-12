@@ -64,8 +64,6 @@ namespace ApiTesting.Tests
                 .StatusCode(200)
             .Extract().Body("$");
 
-            Console.WriteLine(playerResponse);
-
             Snapshot.Match(playerResponse);
         }
 
@@ -107,8 +105,6 @@ namespace ApiTesting.Tests
         .Then()
         .StatusCode(status)
         .Extract().Body("$");
-
-         Console.WriteLine(playerResponse);
 
          Snapshot.Match(playerResponse, matchOptions => matchOptions.IgnoreField(ignore));
         }
