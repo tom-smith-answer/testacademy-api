@@ -154,7 +154,7 @@ namespace ApiTesting.Tests
 
             Snapshot.Match(playerResponse, matchOptions => matchOptions.IgnoreField("traceId"));
         }
-#
+
         //DELETE endpoint tests
 
         [TestCase("Players/13", 204)]
