@@ -32,6 +32,8 @@ namespace ApiTesting.Tests
                 .Then();
         }
 
+        // GET endpoint tests
+
         [TestCase("Players", 200)]
         [TestCase("Players/1", 200)]
         [TestCase("Players/999", 404)]
@@ -93,6 +95,8 @@ namespace ApiTesting.Tests
             .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromMilliseconds(2000)));
         }
 
+        //POST endpoint tests
+
         [TestCase("Post_Harvey", 201, "id")]
         [TestCase("Post_Incomplete", 400, "traceId")]
         public void PostRequest(string name, int status, string ignore)
@@ -150,6 +154,8 @@ namespace ApiTesting.Tests
 
             Snapshot.Match(playerResponse, matchOptions => matchOptions.IgnoreField("traceId"));
         }
+#
+        //DELETE endpoint tests
 
         [TestCase("Players/13", 204)]
         [TestCase("Players/14", 404)]
@@ -172,6 +178,8 @@ namespace ApiTesting.Tests
                 .Then()
                 .StatusCode(status);
         }
+
+        //PUT endpoint tests
 
         [TestCase("Update_Harvey_Invalid", 400)]
         [TestCase("Update_Harvey_Incomplete", 400)]
