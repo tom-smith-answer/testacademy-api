@@ -65,6 +65,7 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
+          token: ${{ secrets.TOKEN }}
   
       - name: Generate report
         uses: simple-elf/allure-report-action@v1.7
@@ -80,6 +81,5 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
-          PERSONAL_TOKEN: ${{ secrets.TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-report
