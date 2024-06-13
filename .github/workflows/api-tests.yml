@@ -65,7 +65,6 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
-          token: ${{ secrets.TOKEN }}
   
       - name: Generate report
         uses: simple-elf/allure-report-action@v1.7
