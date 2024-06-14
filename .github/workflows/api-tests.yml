@@ -41,6 +41,12 @@ jobs:
         path: ./ApiTesting/bin/Debug/net8.0/allure-results
         if-no-files-found: error
         retention-days: 20
+
+    - name: Checkout gh-page
+      uses: actions/checkout@v4
+      with: 
+        repository: tom-smith-answer/testacademy-api
+        path: gh-pages
     - name: Clean up gh-pages branch (optional)
       run: |
           git checkout -f gh-pages
