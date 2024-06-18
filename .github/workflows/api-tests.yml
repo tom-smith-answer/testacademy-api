@@ -45,6 +45,7 @@ jobs:
 
   report:
     needs: test
+    if: always()
   
     runs-on: ubuntu-latest
   
