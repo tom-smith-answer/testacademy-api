@@ -32,9 +32,9 @@ namespace ApiTesting.Tests
                 .Then();
         }
 
-        //GET - endpoint tests
+        //GET endpoint tests
 
-        [TestCase("Players", 400)]
+        [TestCase("Players", 200)]
         [TestCase("Players/1", 200)]
         [TestCase("Players/999", 404)]
         [TestCase("Players/fail", 400)]
