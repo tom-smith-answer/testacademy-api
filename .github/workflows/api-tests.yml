@@ -52,14 +52,12 @@ jobs:
     steps:
       - name: Download Build Artifact
         uses: actions/download-artifact@v4.1.0
-        if: always()
         with:
           name: allure-results
           path: ./allure-results
   
       - name: Get Allure history (optional)
         uses: actions/checkout@v4.1.1
-        if: always()
         continue-on-error: true
         with:
           ref: gh-pages
@@ -67,7 +65,6 @@ jobs:
   
       - name: Generate report
         uses: simple-elf/allure-report-action@v1.7
-        if: always()
         id: allure-report
         with:
           allure_results: allure-results
@@ -76,7 +73,6 @@ jobs:
           keep_reports: 20
   
       - name: Deploy report to Github Pages
-        if: always()
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
