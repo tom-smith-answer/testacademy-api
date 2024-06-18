@@ -56,12 +56,12 @@ jobs:
           name: allure-results
           path: ./allure-results
   
-      - name: Get Allure history (optional)
-        uses: actions/checkout@v4.1.1
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
+      # - name: Get Allure history (optional)
+      #   uses: actions/checkout@v4.1.1
+      #   continue-on-error: true
+      #   with:
+      #     ref: gh-pages
+      #     path: gh-pages
   
       - name: Generate report
         uses: simple-elf/allure-report-action@v1.7
